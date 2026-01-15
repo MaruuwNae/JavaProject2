@@ -44,4 +44,5 @@ public class ProductService {
         Product product = productRepository.findById(id).orElseThrow(ProductExceptionSupplier.productNotFound(id));
         productRepository.deleteById(product.getId());
     }
+
 }
