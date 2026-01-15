@@ -18,6 +18,7 @@ public class ProductExceptionAdvisor {
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
+
     public ErrorMessageResponse productNotFound(Exception e){
         LOG.error(e.getMessage(), e);
         return new ErrorMessageResponse(e.getLocalizedMessage());
