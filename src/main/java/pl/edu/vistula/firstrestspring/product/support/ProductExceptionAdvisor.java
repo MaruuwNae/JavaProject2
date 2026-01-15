@@ -6,16 +6,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.edu.vistula.firstrestspring.product.support.exception.ProductNotFoundException;
 import pl.edu.vistula.firstrestspring.shared.api.response.ErrorMessageResponse;
 
+@RestControllerAdvice
 public class ProductExceptionAdvisor {
+
     private static final Logger LOG = LoggerFactory.getLogger(ProductExceptionAdvisor.class);
 
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-
     public ErrorMessageResponse productNotFound(Exception e){
         LOG.error(e.getMessage(), e);
         return new ErrorMessageResponse(e.getLocalizedMessage());
